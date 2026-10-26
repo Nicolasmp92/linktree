@@ -1,0 +1,46 @@
+:root {
+  /* Paleta tomada del avatar de Instagram @bibliotecasuoh */
+  --menta: #d0f9eb;
+  --menta-sombra: #a8e6cf;
+  --azul-uoh: #0075c9;
+  --navy: #03122e;
+  --cyan: #2aa7df;
+  --texto: #0d2440;
+  --texto-dim: rgba(13, 36, 64, 0.68);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family:
+    'Segoe UI',
+    system-ui,
+    -apple-system,
+    Roboto,
+    sans-serif;
+  color: var(--texto);
+  /* Focos de luz cayendo desde arriba; la base progresa del menta
+     del avatar IG al navy institucional hacia abajo */
+  background:
+    radial-gradient(ellipse 90% 40% at 30% -8%, rgba(255, 255, 255, 0.9), transparent 60%),
+    radial-gradient(ellipse 70% 35% at 75% -5%, rgba(255, 255, 255, 0.7), transparent 55%),
+    linear-gradient(
+      180deg,
+      #eafdf5 0%,
+      var(--menta) 20%,
+      var(--menta-sombra) 42%,
+      #7eccea 62%,
+      var(--cyan) 82%,
+      #1e96cc 100%
+    );
+  background-attachment: fixed;
+}

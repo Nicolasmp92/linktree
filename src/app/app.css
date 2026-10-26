@@ -1,0 +1,382 @@
+:host {
+  display: block;
+}
+
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  padding: 44px 20px 32px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ---- identidad ---- */
+
+@keyframes entrar-header {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.identidad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  animation: entrar-header 520ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+.logo {
+  height: 88px;
+  width: auto;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 6px 14px rgba(0, 117, 201, 0.18));
+}
+
+.institucion {
+  font-size: 0.95rem;
+  color: var(--texto-dim);
+}
+
+.handle {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--azul-uoh);
+  letter-spacing: 0.02em;
+}
+
+/* ---- secciones ---- */
+
+.seccion {
+  width: 100%;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(3, 18, 46, 0.55);
+  margin-bottom: -8px;
+  animation: entrar-header 480ms ease backwards;
+  animation-delay: calc(160ms + var(--i, 0) * 70ms);
+}
+
+/* ---- enlaces ---- */
+
+.enlaces {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Entrada escalonada: cada card aparece ~70ms después de la anterior */
+@keyframes entrar-card {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.enlace {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(3, 18, 46, 0.08);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(3, 18, 46, 0.07);
+  color: var(--texto);
+  text-decoration: none;
+  animation: entrar-card 480ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: calc(160ms + var(--i, 0) * 70ms);
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+/* Destello de luz que barre la card en hover */
+.enlace::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  transition: transform 550ms ease;
+  pointer-events: none;
+}
+
+.enlace:hover::after {
+  transform: translateX(120%);
+}
+
+/* Feedback táctil al presionar (la mayoría abre desde el celular) */
+.enlace:active {
+  transform: translateY(0) scale(0.98);
+  transition-duration: 60ms;
+}
+
+.enlace:hover,
+.enlace:focus-visible {
+  transform: translateY(-2px);
+  background: #ffffff;
+  border-color: rgba(0, 117, 201, 0.4);
+  box-shadow: 0 12px 30px rgba(3, 18, 46, 0.14);
+}
+
+.enlace:focus-visible {
+  outline: 2px solid var(--azul-uoh);
+  outline-offset: 2px;
+}
+
+.enlace.destacado {
+  border-color: rgba(0, 117, 201, 0.35);
+  background: linear-gradient(
+    120deg,
+    rgba(42, 167, 223, 0.16),
+    rgba(255, 255, 255, 0.85)
+  );
+}
+
+.icono {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(0, 117, 201, 0.1);
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.icono svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: var(--azul-uoh);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 160ms ease;
+}
+
+.enlace:hover .icono {
+  background: rgba(0, 117, 201, 0.2);
+  transform: scale(1.05);
+}
+
+.enlace.destacado .icono {
+  background: var(--azul-uoh);
+}
+
+.enlace.destacado .icono svg {
+  stroke: #ffffff;
+}
+
+.textos {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+
+.titulo {
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.25;
+  color: var(--navy);
+}
+
+.subtitulo {
+  font-size: 0.82rem;
+  color: var(--texto-dim);
+  line-height: 1.3;
+}
+
+.flecha {
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  color: var(--azul-uoh);
+  transition: transform 160ms ease;
+}
+
+.enlace:hover .flecha {
+  transform: translateX(4px);
+}
+
+/* ---- pie ---- */
+
+/* ---- contacto ---- */
+
+.contacto {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  animation: entrar-card 480ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: 80ms;
+}
+
+.chip {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(3, 18, 46, 0.14);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--navy);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease;
+}
+
+.chip svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: var(--azul-uoh);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.chip:hover,
+.chip:focus-visible {
+  transform: translateY(-2px);
+  background: #ffffff;
+  border-color: rgba(0, 117, 201, 0.45);
+}
+
+.chip:active {
+  transform: scale(0.97);
+}
+
+/* ---- separador ---- */
+
+.separador {
+  width: 100%;
+  border: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(3, 18, 46, 0.22) 25%,
+    rgba(3, 18, 46, 0.22) 75%,
+    transparent
+  );
+  animation: entrar-card 480ms ease backwards;
+  animation-delay: 140ms;
+}
+
+/* ---- pie ---- */
+
+.pie {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  animation: entrar-card 480ms ease backwards;
+  animation-delay: calc(160ms + 13 * 70ms + 300ms);
+}
+
+.campus {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(3, 18, 46, 0.12);
+  background: rgba(255, 255, 255, 0.45);
+  text-decoration: none;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease;
+}
+
+.campus svg {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: var(--azul-uoh);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.campus-textos {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.campus-nombre {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.campus-dir {
+  font-size: 0.68rem;
+  color: rgba(3, 18, 46, 0.6);
+  line-height: 1.25;
+}
+
+.campus:hover,
+.campus:focus-visible {
+  transform: translateY(-2px);
+  background: #ffffff;
+  border-color: rgba(0, 117, 201, 0.45);
+}
+
+@media (max-width: 400px) {
+  .pie {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
